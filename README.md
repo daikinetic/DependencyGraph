@@ -20,8 +20,7 @@
    cd DependencyGraph
    bash generate_dependencies.sh
    ```
-3. `DependencyGraph/` 配下に `dependencies.png` が生成されます
-
+3. `DependencyGraph/` 配下に `dependencies.png` が生成されます（これはイメージ画像）
 ![image](https://github.com/user-attachments/assets/3af62dee-d07b-4654-9c11-955be26ccc3d)
 
 
