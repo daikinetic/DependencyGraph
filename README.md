@@ -21,3 +21,6 @@
    bash generate_dependencies.sh
    ```
 3. `DependencyGraph/` 配下に `dependencies.png` が生成されます
+
+![image](https://github.com/user-attachments/assets/e1e6cc45-a8f4-4301-ab35-9b6078662847)
+
