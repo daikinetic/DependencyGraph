@@ -1,0 +1,23 @@
+{
+    "name": "Project",
+    "dependencies": [
+        {
+            "name": "Library A",
+            "dependencies": [
+                {
+                    "name": "Library C",
+                    "dependencies": []
+                }
+            ]
+        },
+        {
+            "name": "Library B",
+            "dependencies": [
+                {
+                    "name": "Library D",
+                    "dependencies": []
+                }
+            ]
+        }
+    ]
+}
