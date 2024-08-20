@@ -13,7 +13,7 @@ struct DependencyNodeView: View {
   let totalChildren: Int
   let nodeIndex: Int
 
-  let nodeWidth: CGFloat = 100
+  let nodeWidth: CGFloat = 200
   let nodeHeight: CGFloat = 50
 
   // ノードの位置を計算
@@ -31,9 +31,9 @@ struct DependencyNodeView: View {
           .padding()
           .background(Color.blue)
           .cornerRadius(8)
-          .border(Color.purple, width: 2)
           .frame(width: nodeWidth, height: nodeHeight)
       }
+
       .offset(x: calculatePosition(depth: depth, nodeIndex: nodeIndex, totalChildren: totalChildren).x,
               y: calculatePosition(depth: depth, nodeIndex: nodeIndex, totalChildren: totalChildren).y)
 
@@ -43,11 +43,12 @@ struct DependencyNodeView: View {
         DependencyNodeView(
           node: node.children[childIndex],
           depth: depth + 1,
-          horizontalSpacing: horizontalSpacing,
+          horizontalSpacing: horizontalSpacing + CGFloat(childIndex*(-20)),
           verticalSpacing: verticalSpacing,
           totalChildren: node.children.count,
           nodeIndex: childIndex
         )
+        .onAppear{ print(childIndex) }
         .offset(x: calculatePosition(depth: depth + 1, nodeIndex: childIndex, totalChildren: node.children.count).x,
                 y: calculatePosition(depth: depth + 1, nodeIndex: childIndex, totalChildren: node.children.count).y)
       }
@@ -74,7 +75,8 @@ public let sampleDependency = Dependency(
   children: [
     Dependency(name: "Child A", children: [
       Dependency(name: "Grandchild A1", children: []),
-      Dependency(name: "Grandchild A2", children: [])
+      Dependency(name: "Grandchild A2", children: []),
+      Dependency(name: "Grandchild A3", children: []),
     ]),
     Dependency(name: "Child B", children: [
       Dependency(name: "Grandchild B1", children: []),
