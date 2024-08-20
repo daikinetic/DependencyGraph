@@ -2,21 +2,30 @@
 import SwiftUI
 
 #Preview {
-  ContentView(dependency: sampleDependency)
+  ContentView(root: sampleDependency)
 }
 
 struct ContentView: View {
 
-  var dependency: Dependency
+  var root: Dependency
 
   var body: some View {
-    ScrollView {
-      DependencyView(
-        dependency: dependency,
-        x: 100,
-        y: 50
-      )
-      .frame(maxWidth: .infinity, maxHeight: .infinity)
+    GeometryReader { geometry in
+      ScrollView([.horizontal, .vertical]) { // スクロール可能にする
+        Group {
+          DependencyNodeView(
+            node: root,
+            depth: 0,
+            horizontalSpacing: 100, // 画面幅に基づく間隔調整
+            verticalSpacing: 100,
+            totalChildren: root.children.count, // ルートノードには 1 つの子ノードがあると仮定
+            nodeIndex: 0 // ルートノードのインデックス
+          )
+          .frame(width: max(geometry.size.width, 2000), height: max(geometry.size.height, 2000)) // 全体サイズの調整
+          .background(Color.gray) // 背景色を設定
+        }
+        .padding()
+      }
     }
   }
 }

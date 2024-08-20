@@ -18,7 +18,7 @@ struct DependencyGraph: App {
   var body: some Scene {
 
     WindowGroup {
-      let contentView = ContentView(dependency: dependency ?? sampleDependency)
+      let contentView = ContentView(root: dependency ?? sampleDependency)
       contentView
         .onAppear {
           let tmpImagePath = FileManager.default.temporaryDirectory.appendingPathComponent("dependencies.png").path

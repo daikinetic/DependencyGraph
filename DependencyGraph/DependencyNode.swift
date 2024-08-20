@@ -1,19 +1,19 @@
 
 import Foundation
 
-public struct Dependency: Decodable {
+public struct DependencyNode: Decodable {
 //  let id = UUID()
   let name: String
-  let children: [Dependency]
+  let dependencies: [DependencyNode]
 }
 
-func parseJSON() -> Dependency? {
+func parseJSON() -> DependencyNode? {
   if let url = Bundle.main.url(forResource: "dependencies", withExtension: "json") {
     print("url: \(url) \n")
     do {
       let data = try Data(contentsOf: url)
       let decoder = JSONDecoder()
-      return try decoder.decode(Dependency.self, from: data)
+      return try decoder.decode(DependencyNode.self, from: data)
     } catch {
       print("Error reading file at \(url): \(error)")
       return nil
